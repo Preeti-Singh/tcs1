@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <title>Main</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/index.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js">
+        </script>
+  
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand page-scroll">
+      <i class="glyphicon glyphicon-play-circle"></i>  <span class="light">Start</span> Recruiting
+      </a>
+	  
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav navbar-right">
+	  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Welcome</a></li>
+	  
+        <li><a href="#"> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br/><br/><br/><br/><br/>
+<div class="container" >
+<table class="table table-striped table-bordered" ng-controller="twctrl">
+<thead>
+  <tr>
+  <th width="8%" class="text-center">Select</th>
+  <th class="text-center">Name</th>
+  <th class="text-center">Workflow</th>
+  <th width="8%" class="text-center">Action</th>
+  </tr>
+</thead>
+<tbody >
+   <tr ng-repeat="x in projects" >
+   <td class="text-center"><input type="radio" ng-model="id" name="name" value="{{x.empid}}"  /></td>
+   <td class="text-center">{{x.name}}</td>
+	  
+   <td class="text-center">{{x.workflow}}</td>
+   <td class="text-center"><button type="button" class="btn btn-primary" >Edit</button></td>
+  </tr>
+</tbody>
+</table>
+<input type="button" value="Check Evaluation" class="btn btn-success" style="float:right" ng-click="callService()" value="click" ><br/>
+<br/>
+</div>
+
+<footer class="container-fluid text-center" style="margin-top:240px">
+  <p>Copyright @ TCS Recruitment Process Management....</p>
+</footer>
+<script>
+ var App = angular.module('myApp', []);
+  App.controller('twctrl',function ($scope, $http) {
+         getdata();
+		 function getdata(){
+            $http.post("tworkflow.php")
+            .success(function(data){
+                    $scope.projects= data;
+                })
+                .error(function() {
+                 $scope.projects = "error in fetching data";
+                });
+}
+$scope.id={
+ };
+ $scope.callService=function(){
+ if($scope.id==''){return;}
+else{
+$http({
+url:"candidate.php",
+data:{id:$scope.id},
+method:'POST'
+})
+.then(function(response){
+$scope.student=response.data;
+})
+}
+}
+});
+</script>
+</body>
+</html>

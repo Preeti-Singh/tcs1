@@ -1,0 +1,56 @@
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+	
+	.intro{
+	display: table;
+    width: 100%;
+    height: auto;
+    padding: 250px 0;
+    color:#fff;
+	 background: url('img/pp.jpg') no-repeat top center scroll;
+	  background-color:#000;
+	 -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+      background-size: cover;
+	 }
+	 
+	 
+	 .intro .intro-body {
+    display: table-cell;
+    vertical-align: middle;
+	
+}
+.intro .intro-body .brand-heading {
+    font-size: 80px;
+	
+}
+
+.intro .intro-body .intro-text {
+    font-size: 22px;
+}
+	 
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }

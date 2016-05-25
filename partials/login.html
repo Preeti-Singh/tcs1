@@ -1,0 +1,16 @@
+<section id="login" class="container content-section text-center" ng-controller="loginCtrl" >
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Login</h2>
+                <form action="" method="post">
+				Username: <input type="text" name="user" ng-model="user"><br/><br/>
+				<br/>
+				Password: <input type="password" name="pass" ng-model="pass">
+				<br/>
+				<br/>
+				<input type="button" class="btn btn-primary" value="Login" ng-click="checkData()" >
+				<input type="button" class="btn btn-success" value="Cancel">
+				</form>
+            </div>
+        </div>
+    </section>
